@@ -1,0 +1,49 @@
+{
+  "manifolds": [
+    "hemisphere",
+    "saddle",
+    "paraboloid"
+  ],
+  "seeds": [
+    42,
+    43
+  ],
+  "workers": 2,
+  "override": true,
+  "results_root": "results/toy_manifolds_test",
+  "stage_overrides": {
+    "score": {
+      "n_train": 2000,
+      "n_val": 200,
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "projection": {
+      "n_train": 2000,
+      "n_val": 200,
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "uniform": {
+      "n_train": 50,
+      "n_generate": 50,
+      "final_project": true,
+      "save_figure_data": false,
+      "langevin": {
+        "n_steps": 10
+      }
+    },
+    "geodesics": {
+      "n_eval_pairs": 2,
+      "n_waypoints": 5,
+      "n_background": 1000,
+      "refine": {
+        "steps": 2
+      }
+    }
+  }
+}

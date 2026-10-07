@@ -1,0 +1,23 @@
+# Pre-commit hook configuration: https://pre-commit.com
+# Install once per clone: uv run pre-commit install
+#
+# Hooks run on staged files; auto-fixable changes are applied in place and
+# re-staged. Rules come from [tool.ruff] in pyproject.toml.
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-lint
+        name: ruff lint (uvx)
+        entry: uvx ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format (uvx)
+        entry: uvx ruff format
+        language: system
+        types: [python]
+      - id: strip-notebook-output
+        name: strip notebook outputs (uvx)
+        entry: uvx --from nbstripout nbstripout
+        language: system
+        types: [jupyter]

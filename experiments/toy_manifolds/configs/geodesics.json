@@ -1,0 +1,23 @@
+{
+  "manifold": "hemisphere",
+  "projector_checkpoint": "results/toy_manifolds/projector/hemisphere/projector.pt",
+  "n_eval_pairs": 20,
+  "refine": {
+    "metric": {
+      "beta": 10.0,
+      "space": "ambient"
+    },
+    "steps": 1000,
+    "lr": 0.003
+  },
+  "n_waypoints": 31,
+  "evaluator": {
+    "n_neighbors": 15
+  },
+  "n_background": 100000,
+  "seed": 42,
+  "run": {
+    "out_dir": "results/toy_manifolds/geodesics/hemisphere",
+    "override": false
+  }
+}

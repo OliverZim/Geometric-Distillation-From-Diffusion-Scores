@@ -1,0 +1,89 @@
+[project]
+name = "geometry-distill"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+
+requires-python = ">=3.11"
+dependencies = [
+    # Core runtime dependencies. Lower bounds are kept broad so the package can
+    # run on Python 3.11 with older scientific libraries (h5py 3.11.0,
+    # matplotlib 3.9.0, numpy 1.25.2, scikit-learn 1.5.0, scipy 1.13.1,
+    # torch 2.3.1).
+    # Note: numpy>=2.5 and scipy>=1.18 require Python>=3.12, so we use broader
+    # ranges here. uv resolves the appropriate version per Python version.
+    "h5py>=3.11.0",
+    "matplotlib>=3.9.0",
+    "numpy>=1.25.2",
+    "scikit-learn>=1.5.0",
+    "scipy>=1.13.1",
+    "torch>=2.3.1",
+]
+
+[dependency-groups]
+# Additional packages on top of the core dependencies, pinned to the versions
+# resolved in uv.lock for exact reproducibility. The entries below are the full
+# closure of phate/pot/scprep minus what the core dependencies already provide
+# (numpy, scipy, scikit-learn, matplotlib, pandas, decorator, packaging, wrapt,
+# joblib, threadpoolctl, ...), plus the CITE-seq/multiome preprocessing stack.
+additional_packages = [
+    "phate==2.0.0",        # -> graphtools, tasklogger, deprecated, future
+    "pot==0.9.7.post1",    # -> numpy, scipy (core)
+    "scprep==1.2.3",       # -> decorator, packaging, pandas (all core)
+    # Transitive deps of phate/graphtools NOT provided by the core deps:
+    "deprecated==1.3.1",   # -> wrapt (core)
+    "future==1.0.0",
+    "graphtools==2.1.0",   # -> pygsp, tasklogger, deprecated, future
+    "pygsp==0.6.1",        # -> numpy, scipy (core)
+    "tasklogger==1.2.0",   # -> deprecated
+    "pydantic-settings>=2.15.0",  # -> pydantic, typing-extensions (core)
+    # Transitive deps of pydantic-settings NOT provided by the core deps:
+    "python-dotenv==1.2.4",       # -> pydantic-settings
+    # 0.4.3+ requires typing-extensions>=4.15, which is not available here.
+    "typing-inspection==0.4.2",   # -> pydantic-settings
+    # CITE-seq/multiome preprocessing (prepare_cite_multi.py).
+    "anndata==0.11.3",     # -> array-api-compat, natsort
+    "scanpy==1.11.1",      # -> session-info2, legacy-api-wrap, natsort, umap-learn
+    "hdf5plugin==7.1.0",   # -> h5py (core)
+    # Transitive deps of anndata/scanpy NOT provided by the core deps:
+    "array-api-compat==1.15.0",  # -> anndata
+    "legacy-api-wrap==1.5",      # -> scanpy, anndata
+    "natsort==8.4.0",            # -> scanpy, anndata
+    "session-info2==0.4.1",      # -> scanpy
+    "umap-learn==0.5.7",         # 0.5.8+ requires scikit-learn>=1.6
+    "pynndescent==0.5.13",       # -> scanpy, umap-learn
+]
+
+dev = [
+    "pre-commit>=4.6.1",
+    "pytest>=8.0",
+    "ruff>=0.16.0",
+]
+
+[tool.uv]
+# Groups installed by a plain `uv sync`: the dev toolchain plus the additional
+# packages.
+default-groups = ["dev", "additional_packages"]
+
+# scprep declares pandas<2.1 (stale pin, project unmaintained since 2023).
+# pandas 2.0.3 has no numpy>=2 support (broken ABI) and no Python>=3.12 wheels.
+# scprep's own pandas patch is a no-op for pandas>=2.0, so 2.2+ works fine.
+override-dependencies = ["pandas>=2.2,<3"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["geometry_distill", "experiments"]
+
+[tool.pytest.ini_options]
+# ``experiments`` is a repo-root package (not installed); tests import it.
+pythonpath = ["."]
+
+[build-system]
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"

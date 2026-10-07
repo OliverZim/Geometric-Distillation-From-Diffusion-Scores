@@ -1,0 +1,37 @@
+{
+  "scenarios": ["linear", "bifurcation", "tree"],
+  "seeds": [42],
+  "pipelines": ["geodesics", "transport"],
+  "workers": 2,
+  "override": true,
+  "results_root": "results/synthetic_data_test",
+  "stage_overrides": {
+    "score": {
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "projection": {
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "geodesics": {
+      "n_eval_pairs": 2,
+      "n_waypoints": 5,
+      "refine": {
+        "steps": 2
+      }
+    },
+    "transport": {
+      "n_pairs": 20,
+      "n_eval": 20,
+      "n_waypoints": 5,
+      "refine": {
+        "steps": 2
+      }
+    }
+  }
+}

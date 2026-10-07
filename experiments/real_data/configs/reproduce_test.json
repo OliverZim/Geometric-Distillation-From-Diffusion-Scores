@@ -1,0 +1,30 @@
+{
+  "datasets": ["eb"],
+  "holdouts": ["T4_5C"],
+  "seeds": [42],
+  "stages": ["score", "projection", "transport"],
+  "results_root": "results/real_data_test",
+  "override": true,
+  "stage_overrides": {
+    "score": {
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "projection": {
+      "trainer": {
+        "epochs": 1,
+        "patience": 0
+      }
+    },
+    "transport": {
+      "n_pairs": 20,
+      "fm_epochs": 1,
+      "time_samples": 2,
+      "refine_steps": 2,
+      "gaga_n_tsteps": 5,
+      "gaga_n_match_rep": 1
+    }
+  }
+}

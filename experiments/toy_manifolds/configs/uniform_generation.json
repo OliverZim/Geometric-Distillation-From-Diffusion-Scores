@@ -1,0 +1,26 @@
+{
+  "manifold": "hemisphere",
+  "projector_checkpoint": "results/toy_manifolds/projector/hemisphere/projector.pt",
+  "lambda_pull": 100.0,
+  "langevin": {
+    "step_size": 5e-05,
+    "n_steps": 100000,
+    "noise_scale": 1.0,
+    "grad_clip": 5.0,
+    "detach_every_step": true,
+    "return_trajectory": false
+  },
+  "filter_multiple": 0.0,
+  "final_project": true,
+  "save_figure_data": true,
+  "figure_bias_n": 5000,
+  "n_train": 3000,
+  "n_generate": 3000,
+  "jitter_scale": 0.005,
+  "kde_fit_mask_only": false,
+  "seed": 42,
+  "run": {
+    "out_dir": "results/toy_manifolds/uniform_generation/hemisphere",
+    "override": false
+  }
+}

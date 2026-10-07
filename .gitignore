@@ -1,0 +1,15 @@
+# Python build files
+*.pyc
+
+# Virtual environments
+.venv
+
+# Experiment outputs
+results/
+notebooks/figures/
+
+# datasets and generated synthetic single-cell artifacts
+experiments/synthetic_data/synthetic/data/
+experiments/real_data/eb/data/bulkRNAseq/
+experiments/real_data/eb/data/scRNAseq/
+

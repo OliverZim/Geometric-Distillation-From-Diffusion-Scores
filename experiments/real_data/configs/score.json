@@ -1,0 +1,32 @@
+{
+  "scenario": "eb",
+  "variant": "holdout_T4_5C",
+  "data_root": "experiments/real_data/eb/data",
+  "seed": 42,
+  "n_val": 1500,
+  "batch_size": 256,
+  "schedule": {
+    "sigma_min": 0.005,
+    "sigma_max": 0.05
+  },
+  "score": {
+    "x_dim": 50,
+    "hidden_dim": 256,
+    "n_layers": 3
+  },
+  "trainer": {
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "epochs": 1000,
+    "grad_clip": 1.0,
+    "lr_schedule": "cosine",
+    "eta_min": 1e-05,
+    "patience": 300,
+    "min_delta": 0.0001,
+    "n_sigma_bins": 5
+  },
+  "run": {
+    "out_dir": "results/real_data/eb/holdout_T4_5C-s42/score",
+    "override": false
+  }
+}

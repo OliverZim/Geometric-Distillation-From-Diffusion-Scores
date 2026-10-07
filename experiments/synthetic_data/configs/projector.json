@@ -1,0 +1,50 @@
+{
+  "scenario": "linear",
+  "variant": "full",
+  "data_root": "experiments/synthetic_data/synthetic/data",
+  "seed": 42,
+  "n_val": 1500,
+  "batch_size": 256,
+  "score_checkpoint": "results/synthetic_data/score/linear_full/score.pt",
+  "flow_sigmas": [
+    0.05,
+    0.035
+  ],
+  "tau_min": 0.02,
+  "tau_max": 0.06,
+  "projector": {
+    "x_dim": 50,
+    "hidden_dim": 64,
+    "enc_layers": 3,
+    "dec_layers": 3
+  },
+  "loss": {
+    "lambda_proj": 1.0,
+    "lambda_fix": 10.0,
+    "lambda_idem": 1.0,
+    "lambda_fiber": 0.0,
+    "lambda_overlap": 0.0,
+    "lambda_orth": 1.0,
+    "lambda_iso": 0.0,
+    "iso_dirs": 4
+  },
+  "trainer": {
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "epochs": 1000,
+    "grad_clip": 1.0,
+    "lr_schedule": "cosine",
+    "eta_min": 1e-05,
+    "noise": {
+      "tau_min": 0.02,
+      "tau_max": 0.06
+    },
+    "patience": 300,
+    "min_delta": 0.0001,
+    "val_every": 5
+  },
+  "run": {
+    "out_dir": "results/synthetic_data/projector/linear_full",
+    "override": false
+  }
+}

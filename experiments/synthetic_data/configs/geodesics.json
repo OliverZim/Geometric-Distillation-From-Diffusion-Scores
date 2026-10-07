@@ -1,0 +1,23 @@
+{
+  "scenario": "linear",
+  "variant": null,
+  "data_root": "experiments/synthetic_data/synthetic/data",
+  "seed": 42,
+  "projector_checkpoint": "results/synthetic_data/projector/linear_full/projector.pt",
+  "pairs_path": null,
+  "refine": {
+    "metric": {
+      "beta": 10.0,
+      "space": "ambient"
+    },
+    "steps": 1000,
+    "lr": 0.0001
+  },
+  "n_waypoints": 31,
+  "n_eval_pairs": 2000,
+  "pair_chunk": 500,
+  "run": {
+    "out_dir": "results/synthetic_data/geodesics/linear_full",
+    "override": false
+  }
+}

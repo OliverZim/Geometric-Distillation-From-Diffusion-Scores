@@ -1,0 +1,24 @@
+{
+  "scenario": "linear",
+  "variant": "holdout_mid",
+  "data_root": "experiments/synthetic_data/synthetic/data",
+  "seed": 42,
+  "projector_checkpoint": "results/synthetic_data/projector/linear_holdout_mid/projector.pt",
+  "held_out_bin": 2,
+  "n_pairs": 0,
+  "refine": {
+    "metric": {
+      "beta": 10.0,
+      "space": "ambient"
+    },
+    "steps": 1000,
+    "lr": 0.0001
+  },
+  "n_waypoints": 31,
+  "pair_chunk": 500,
+  "n_eval": 2000,
+  "run": {
+    "out_dir": "results/synthetic_data/transport/linear_holdout_mid",
+    "override": false
+  }
+}

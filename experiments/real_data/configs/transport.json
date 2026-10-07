@@ -1,0 +1,28 @@
+{
+  "scenario": "eb",
+  "data_root": "experiments/real_data/eb/data",
+  "seed": 42,
+  "held_out": "T4_5C",
+  "projector_checkpoint": "results/real_data/eb/holdout_T4_5C-s42/projection/projector.pt",
+  "n_pairs": 1500,
+  "beta": 10.0,
+  "fm_hidden_dim": 64,
+  "fm_epochs": 150,
+  "time_samples": 20,
+  "batch_size": 128,
+  "lr": 0.001,
+  "weight_decay": 0.0001,
+  "chord_refine_max_ratio": 5.0,
+  "pair_space": "latent",
+  "refine_steps": 300,
+  "refine_lr": 0.005,
+  "source_window": "",
+  "target_window": "",
+  "gaga_test_frac": 0.1,
+  "gaga_n_tsteps": 100,
+  "gaga_n_match_rep": 5,
+  "run": {
+    "out_dir": "results/real_data/eb/holdout_T4_5C-s42/transport",
+    "override": false
+  }
+}
